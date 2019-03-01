@@ -1,7 +1,15 @@
-<div class="panel panel-body">
-  <ng-map center="{{center}}">
+<div class="panel">
+  <ng-map default-style="true" class="full-map" zoom = {{zoom}} center="{{center}}">
+
     <marker ng-repeat="org in organizations"
-            position="{{org.latitude}}, {{org.longitude}}" title="{{org.organisationName}}">
+            position="{{org.latitude}}, {{org.longitude}}" title="{{org.organisationName}}" on-click="showOrg(event, org)">
+    </marker>
+
+    <info-window id="myInfoWindow">
+      <div ng-non-bindable>
+        <h4>{{selectedOrg.organisationName}}</h4>
+      </div>
+    </info-window>
   </ng-map>
 </div>
 

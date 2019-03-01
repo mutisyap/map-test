@@ -80,4 +80,9 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
+
+  .full-map{
+    width: 1000px;
+    height: 500px;
+  }
 }

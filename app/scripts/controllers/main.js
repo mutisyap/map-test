@@ -8,12 +8,19 @@
  * Controller of the mapTestApp
  */
 angular.module('mapTestApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', function ($scope, NgMap) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+    $scope.zoom = 7;
+
+    NgMap.getMap().then(function(map) {
+      $scope.map = map;
+    });
+    
 
     $scope.organizations = JSON.parse('[\n' +
       '    {\n' +
@@ -1456,5 +1463,11 @@ angular.module('mapTestApp')
     console.log('vm.centerLong = '+$scope.centerLong);
 
     $scope.center = [-1.17408, 36.7529];
+
+    $scope.showOrg = function(event, org) {
+      $scope.selectedOrg = org;
+      $scope.map.showInfoWindow('myInfoWindow', this);
+    };
+
 
   });
